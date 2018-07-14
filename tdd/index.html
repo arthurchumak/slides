@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>TDD</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../shower/themes/ribbon/styles/styles.css">
+	<style>
+        .shower {
+            --slide-ratio: calc(16 / 10);
+        }
+		.slide-code {
+			padding-top: 1em;
+		}
+		.shout .emoji {
+			font-size: 0.7em;
+		}
+		.large {
+			line-height: 1.5;
+			font-size: 50px;
+		}		/* Strike */
+
+		.strike {
+			position: relative;
+			text-decoration: none;
+		}
+
+		.strike span {
+			position: absolute;
+			top: 0.7em;
+			left: -0.1em;
+			right: -0.1em;
+			height: 0.05em;
+			background: #cc0000;
+			content: '';
+			transform: rotate(-2deg);
+		}
+
+	</style>
+</head>
+<body class="shower list">
+	<section class="slide">
+		<h2 class="shout">TDD</h2>
+	</section>
+	
+	<section class="slide">
+		<h2>Модульный тест (Unit test) </h2>
+		<mark>Модульный тест применяется для тестирования одной логически выделенной и изолированной единицы системы.</mark> Чаще всего это метод класса или простая функция (хотя я допускаю и весь класс). Изолированность тестируемой единицы достигается при помощи Заглушек (Stubs, Dummies) и Макетов (Mockups).
+	</section>
+
+	<section class="slide">
+		<h2>Системный тест (System test)</h2>
+		Это комплексный тест, который тестирует связку сразу нескольких компонентов. Можно сказать, что это модульный тест, где модуль — это связка компонентов. Связка объединена неким фасадом, который предоставляет соответствующий API к ней. Методы этого API — это как раз то, что нам и надо покрыть тестами. Изолированность связки достигается по средствам Заглушек (Stubs, Dummies) и Макетов (Mockups). <mark>Факт связанности компонентов и формат коммуникации между ними проверяется с помощью так называемых Шпионов (Spies).🤠</mark>
+	</section>
+
+	<section class="slide clear white">
+		<img class="cover width" src="pictures/test-pyramid.png">
+	</section>
+
+	<section class="slide">
+		<ol class="large place" style="white-space: nowrap">
+			<li><del class="strike">Используют сеть, БД, ФС 
+					<span class="next active"></span></del></li>
+			<li class="next">Выполняются в памяти</li>
+			<li class="next">Предсказуемые</li>
+			<li class="next">Быстрые</li>
+			
+		</ol>
+	</section>
+
+	<section class="slide clear white">
+		<img class="cover height" src="pictures/what-to-test.png">
+	</section>
+
+	<section class="slide clear">
+		<h2 class="shout">
+			Инструменты
+			<span class="emoji">🛠</span>
+		</h2>
+	</section>
+	
+	<section class="slide">
+		<ol class="large place" style="white-space: nowrap">
+			<li>Assert - утверждение</li>
+			<li class="next">Spy - отслеживает вызовы</li>
+			<li class="next">Stub - возвращает что-либо</li>
+			<li class="next">Mock - все и сразу 🔥</li>
+			<li class="next">Подмена модулей в runtime 🔥💣💥</li>
+		</ol>
+	</section>
+
+	<section class="slide">
+		<ol class="large place" style="white-space: nowrap">
+			<li>Assert - утверждение</li>
+			<li>Spy - отслеживает вызовы</li>
+			<li><del class="strike">Stub - возвращает что-либо<span></span></del></li>
+			<li><del class="strike">Mock - все и сразу 🔥<span></span></del></li>
+			<li><del class="strike">Подмена модулей в runtime 🔥💣💥<span></span></del></li>
+		</ol>
+	</section>
+
+	<section class="slide clear">
+		<h2 class="shout">
+			Тестируемый код
+		</h2>
+	</section>
+
+	<section class="slide">
+		<ol class="place" style="white-space: nowrap">
+			<li>Конструктор не должен делать какую-либо работу</li>
+			<li class="next">Глобальное состояние и синглтоны сложно тестировать</li>
+			<li class="next"><a href="https://refactoring.guru/ru/refactoring/smells">...Запахи кода</a></li>
+		</ol>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Express.js <span class="emoji">🧐</span></h2>
+	</section>
+
+	<section class="slide slide-code">
+		<h2>Обычный роутер</h2>
+		<pre style="font-size: 0.8em">
+			<code>const express = require("express");</code>
+			<code><mark>dbHelper = require("dbHelper");</mark> //💩</code>
+			<code> </code>
+			<code>const router = express.router();</code>
+			<code> </code>
+			<code>router.get("/:id", (req, res, next) => {</code>
+			<code>	return dbHelper.anyTable.getById(req.params.id)</code>
+			<code>	  .then(obj => res.json(obj))</code>
+			<code>	  .catch(() => {...});</code>
+			<code>});</code>
+			<code> </code>
+			<code>module.exports = router;</code>	
+		</pre>	
+	</section>
+
+	<section class="slide slide-code">
+		<h2>Тестируемый роутер</h2>
+		<pre style="font-size: 0.8em">
+			<code>const express = require("express");</code>
+			<code>module.exports = (app, <mark>dbHelper</mark>👍) => {</code>
+			<code>	const router = express.Router();</code>
+			<code> </code>
+			<code>	app.use("/", router);</code>
+			<code> </code>
+			<code>	router.get("/:id", (req, res, next) => {</code>
+			<code>	  return dbHelper.anyTable.getById(req.params.id)</code>
+			<code>		.then(obj => res.json(obj))</code>
+			<code>		.catch(() => {...});</code>
+			<code>	});</code>
+			<code>};</code>
+		</pre>	
+	</section>
+
+	<section class="slide slide-code">
+		<h2>Unit test для роутера</h2>
+		<pre style="font-size: 0.7em">
+			<code>const request = require("<a href="https://github.com/visionmedia/supertest">supertest</a>");</code>
+			<code>const app = require("express")();</code>
+			<code><mark>const dbHelperMock = {...mocks};</mark></code>
+			<code>require("routes/index")(app, <mark>dbHelperMock</mark>);</code>
+			<code>describe("app", () => {</code>
+			<code>	it("works", done => {</code>
+			<code>	  request(app).get("/1")</code>
+			<code>		.expect(200, done);</code>
+			<code>	});</code>
+			<code> </code>
+			<code>	it("fails", done => {</code>
+			<code>	  request(app).get("/2")</code>
+			<code>		.expect(404, done);</code>
+			<code>	});</code>
+			<code>});</code>
+		</pre>
+	</section>
+
+	<section class="slide clear white">
+		<img class="cover" src="pictures/patterns.png">
+	</section>
+	
+	<section class="slide">
+		<h2>📖</h2>
+		<ol>
+			<li><a href="https://oz.by/books/more10616493.html">Разработка через тестирование. Кент Бек</a></li>
+			<li><a href="https://medium.com/@arturbasak/a04cab35f45b">Тесты, которые должен писать разработчик</a></li>
+			<li><a href="https://semaphoreci.com/community/tutorials/best-practices-for-spies-stubs-and-mocks-in-sinon-js">Best Practices for Spies, Stubs and Mocks in Sinon.js</a></li>
+			<li><a href="http://evanshortiss.com/development/javascript/2016/04/15/express-testing-using-ioc.html">Unit Testing Express Routers</a></li>
+			<li><a href="https://habrahabr.ru/post/329740/">Mockанье зависимостей в node.js приложениях</a></li>
+			<li><a href="https://testing.googleblog.com/2008/07/how-to-think-about-new-operator-with.html">How to Think About the "new" Operator with Respect to Unit Testing</a></li>
+		</ol>
+	</section>
+
+	<section class="slide">
+		<h2>🎞️</h2>
+		<ol>
+			<li><a href="https://www.youtube.com/watch?v=9zpG_hJsrL8">Dependency Rejection and TDD without Mocks</a></li>
+			<li><a href="https://youtu.be/-JGGw4SN6NA">Как всё починить и ничего не сломать: работа со сложным кодом при помощи тестов</a></li>
+		</ol>
+	</section>
+
+	<div class="progress"></div>
+
+	<script src="../shower/shower.min.js"></script>
+	<!-- Copyright © 2017 Yours Truly, Famous Inc. -->
+
+</body>
+</html>
