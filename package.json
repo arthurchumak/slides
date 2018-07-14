@@ -1,0 +1,11 @@
+{
+  "name": "slides",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "browser-sync start --server --files '*.html, *.css, **/pictures/'"
+  },
+  "author": "arthurchumak@gmail.com",
+  "dependencies": {
+    "browser-sync": "^2.24.5"
+  }
+}
