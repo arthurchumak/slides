@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Чистая архитектура</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../shower/themes/ribbon/styles/styles.css">
+	<style>
+        .shower {
+            --slide-ratio: calc(16 / 10);
+		}
+	</style>
+</head>
+<body class="shower list">
+	<section class="slide clear white">
+		<img class="cover height" src="pictures/mvc.svg">
+	</section>
+	
+	<section class="slide clear white">
+		<img class="cover height" src="pictures/mvc-2.svg">
+	</section>
+
+	<section class="slide clear white">
+		<img class="cover height" src="pictures/test-pyramid.svg">
+	</section>
+
+	<section class="slide clear white">
+		<img class="cover height" src="pictures/test-mvc-pyramid.svg">
+	</section>
+	
+	<section class="slide clear white">
+		<img class="cover height" src="pictures/book.jpg">
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">DDD</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Бизнес-правила</h2>
+		<figure>
+			<blockquote>
+				<p>Бизнес-правила — это правила, делающие или экономящие деньги независимо от наличия или отсутствия их реализации на компьютере. Они делают или экономят деньги, даже когда выполняются вручную.</p>
+			</blockquote>
+			<figcaption>Роберт Мартин</figcaption>
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Entities (Сущности)</h2>
+	</section>
+
+	<section class="slide">
+		<h2>Use cases (Варианты использования)</h2>
+		<figure>
+			<blockquote>
+				<p>Архитектура должна возводить варианты использования, особенности и ожидаемые реакции системы до уровня полноценных сущностей, которые послужат видимыми ориентирами для разработчиков. Это упростит понимание системы и, соответственно, окажет значительную помощь в разработке и сопровождении.</p>
+			</blockquote>
+			<figcaption>Роберт Мартин</figcaption>
+		</figure>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Active Record vs Repository</h2>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Repository</h2>
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">Детали</h2>
+	</section>
+
+	<section class="slide clear white">
+		<img class="cover height" src="pictures/details.jpg">
+	</section>
+
+	<section class="slide">
+		<h2>Главный критерий</h2>
+		<figure>
+			<blockquote>
+				<p>Хорошая архитектура помогает отложить решение о выборе деталей: фреймворков, баз данных, веб-серверов и других инструментов и элементов окружения.</p>
+			</blockquote>
+			<figcaption>Роберт Мартин</figcaption>
+		</figure>
+	</section>
+
+	<section class="slide clear white">
+		<img class="cover height" src="pictures/basic.png">
+	</section>
+	
+	<section class="slide">
+		<h2>Принцип ацикличности зависимостей</h2>
+		<figure>
+			<blockquote>
+				<p>Возможно вам уже приходилось задаваться вопросом, почему для простого модульного тестирования одного из классов приходится подключать так много библиотек и всякой другой всячины. Если бы вы копнули глубже, то наверняка бы обнаружили циклы в графе зависимостей.</p>
+				<p>Небходимо управлять структурой зависимостей компонентов.</p>
+				<p>Циклы в графе зависимостей компонентов недопустимы.</p>
+			</blockquote>
+			<figcaption>Роберт Мартин</figcaption>
+		</figure>
+	</section>
+
+	<section class="slide">
+		<figure>
+			<blockquote>
+				<p>Структура компонентов не может проектироваться сверху вниз. К этому выводу приходят не сразу, как только начинают проектировать систему, но это неизбежно случается с ростом и изменением системы.</p>
+			</blockquote>
+			<figcaption>Роберт Мартин</figcaption>
+		</figure>
+	</section>
+
+	<section class="slide clear white">
+		<img class="cover height" src="pictures/clean.png">
+	</section>
+
+	<div class="progress"></div>
+
+	<script src="../shower/shower.min.js"></script>
+	<!-- Copyright © 2018 Yours Truly, Famous Inc. -->
+
+</body>
+</html>
