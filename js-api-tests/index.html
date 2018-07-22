@@ -23,16 +23,70 @@
 		<h2 class="shout">API testing</h2>
 	</section>
 	
-	<section class="slide clear white">
-		<img class="cover height" src="pictures/bad.svg">
+	<section class="slide">
+		<img class="cover width" src="pictures/bad.svg">
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">SDK</h2>
+	</section>
+
+	<section class="slide">
+		<img class="cover width" src="pictures/bad-with-sdk.svg">
+	</section>
+
+	<section class="slide">
+		<div>
+			<b>Каким должно быть SDK?</b>
+			<ul>
+				<li class="next">Запускаться и на клиенте и на сервере</li>
+				<li class="next">Для HTTP запросов к примеру должны отдаваться:
+					<ul>
+						<li>HTTP status code</li>
+						<li>Parsed headers</li>
+						<li>Parsed body</li>
+					</ul>
+				</li>
+				<li class="next">Кастомизируемым:
+					<ul>
+						<li>Host API</li>
+						<li>Маппинг ответов
+							<ul>
+								<li>Бросать кастомные исключения</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
 	</section>
 	
 	<section class="slide" style="background-color: #f7df1e;">
 		<h2 class="shout" style=" color:black; font-weight: bolder;">Universal JavaScript</h2>
 	</section>
 
-	<section class="slide clear white">
-		<img class="cover height" src="pictures/good.svg">
+	<section class="slide">
+		<img class="cover" src="pictures/sdk.svg">
+	</section>
+
+	<section class="slide">
+		<img class="cover" src="pictures/sdk-on-client.svg">
+	</section>
+
+	<section class="slide">
+		<img class="cover width" src="pictures/good.svg">
+	</section>
+
+	<section class="slide">
+		<h2 class="shout">TDD v2.0</h2>
+	</section>
+
+	<section class="slide">
+		<img class="cover" src="pictures/sdk-mock.svg">
+	</section>
+
+	<section class="slide">
+		<img class="cover" src="pictures/sdk-test.svg">
 	</section>
 
 	<section class="slide">
@@ -43,14 +97,14 @@
 				<li>Контроль версий</li>
 				<li>Меньше лишней работы</li>
 				<li>Созданный SDK прост, тестируется и готов к переиспользованию</li>
-				<li>Не нужны отдельные тулы => однородные API и Unit тесты</li>
+				<li>Не нужны отдельные тулы (Postman...) => однородные API и Unit тесты</li>
 			</ul>
 		</div>
 		<div class="next">
 			<b>Минусы </b>
 			<ul>
 				<li>Для тестирования нужно минимально знать JS и пару либ</li>
-				<li><a href="https://angular.io/guide/http">Angular HttpClient</a></li>
+				<li>Сложно "извлечь" SDK из фронта, если у вас "неравный брак" с <a href="https://angular.io/guide/http">Angular</a></li>
 			</ul>
 		</div>
 	</section>
